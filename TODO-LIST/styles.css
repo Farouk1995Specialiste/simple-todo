@@ -1,0 +1,443 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto',sans-serif;
+    background-color: #eee;
+    margin: 0;
+   overflow: hidden;
+  
+}
+
+header {
+    background-color: #c38d9e;
+    padding: 10px 20px ;
+}
+.container {
+    display: flex;
+   
+    width: 100%;
+    height: 800px;
+}
+/* list and nav */
+
+aside {
+    background-color:#eeeeee ;
+    border-right: 1px solid #c38d9e;
+    width: 20%;
+    padding: 20px;
+    height: 100%;
+  position: relative;
+}
+
+.principale__nav {
+    padding: 10px;
+}
+.principale__nav .list__item {
+    margin: 20px;
+    
+}
+.list__item .task-category {
+    font-size: 22px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+.list__item .task-category:hover {
+    color: #8c435a;
+    transform: scale(1.3);
+}
+.list__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.list__item .count-task-home,
+.list__item .count-task-today,
+.list__item .count-task-week{
+    background-color: #8b438cc7;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: #fff;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.4s ease-in-out;
+}
+.task-category.active,
+. {
+    color: #8c435a;
+    transform: scale(1.3); 
+}
+/* tasks container and info like date name */
+
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 20px 30px;
+    background-color: #fff;
+    color: #8c435a;
+}
+.task-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+}
+.task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #eee;
+    padding: 12px 18px;
+    transition: box-shadow 0.3s ease-in,opacity 0.3s ease-in ;
+}
+.task:hover {
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.add-border {
+    opacity: 0.4;
+}
+.task.Medium {
+    border-left: 2px solid orange;
+}
+.task.High {
+    border-left: 2px solid red;
+}
+.task.Low {
+    border-left: 2px solid green;
+}
+.chek-task {
+    display: flex;
+    align-items: center;
+   gap: 1rem;
+}
+input[type="checkbox"]{
+   width: 20px;
+   height: 20px;
+   accent-color: rgba(31, 168, 150,1);
+   border: 4px solid rgba(31, 168, 150,1);
+   border-radius: 6px;
+   color: #fff;
+
+}
+
+input[type="checkbox"]:checked {
+    background-color: #8c435a;
+    color: #fff;
+}
+.task-info {
+    display: flex;
+    align-items: center;
+    gap :14px;
+}
+.task-info button {
+    cursor: pointer;
+    color: rgba(31, 168, 150,1);
+    border-radius: 4px;
+    border:1px solid rgba(31, 168, 150,1);
+    padding: 6px 10px;
+    transition: background 0.4s ease-in-out,color 0.4s ease-in-out;
+
+}
+.task-info button:hover {
+    color: #fff;
+    background-color: rgba(31, 168, 150,1);
+}
+
+/* toggle show */
+.show-modal-btn{
+    position: absolute;
+    left: 40px;
+   bottom: 300px;
+   color:#fff ;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   background-color: #8c435a;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 30px;
+   cursor: pointer;
+}
+
+ /* section */
+ .section {
+    width: 100%;
+    height: 100%;
+    
+ }
+ .section.show {
+display: none;
+ }
+
+/* overlay */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+
+}
+/* create  new todo || project || notes */
+.modal {
+    background-color: #eee;
+    width: 900px;
+    height: 400px;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    border-radius: 0.2rem;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    transition: all 0.4s ease-in-out;
+}
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+.mini-content-nav {
+    display: flex;
+   width: 100%;
+   height: 100%;
+}
+
+.modal .header {
+    background-color: #8c435a;
+    color: #ffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+    font-size: 20px;
+    margin: 0;
+    height: 50px;
+}
+
+.modal .aside {
+    width: 150px;
+    border-right: 1px solid #c38d9e;
+    height: 100%;
+}
+.nav {
+    list-style: none;
+   
+
+}
+.nav li {
+    margin: 15px 0;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out, color 0.4s ease-in-out;
+}
+.nav li:hover {
+    color: #8c435a;
+    transform: scale(1.3);
+}
+
+textarea {
+    display: block;
+    padding: 10px;
+   margin: 10px;
+   width: 600px;
+   border: 0;
+   background-color: transparent;
+   font-size: 18px;
+}
+textarea:focus   {
+    outline: 0;
+}
+.date__div{
+    padding: 10px;
+}
+.date__div .date {
+    margin-left: 10px;
+    border-radius: 4px;
+    border: 0;
+    padding: 3px 6px;
+    color: rgba(31, 168, 150,1);
+    border: 1px solid  rgba(31, 168, 150,1);
+}
+
+/* button low high medium */
+
+.priorities  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 10px;
+}
+.priorities button ,.create-note {
+cursor: pointer;
+border-radius: 3px;
+font-size: 14px;
+margin-left: 8px;
+padding: 4px  7px;
+transition: background 0.4s ease-in-out,color 0.4s ease-in-out;
+}
+
+/* orange red green buttons */
+
+.low {
+border: 1px solid green;
+color: green;
+}
+.low:hover {
+    background-color: green;
+    color: #fff;
+}
+.low.activeC {
+    background-color: green;
+    color: #fff;
+}
+.medium {
+    border: 1px solid orange;
+    color: orange;
+  }
+  .medium:hover {
+    background-color: orange;
+    color: #fff;
+}
+.medium.activeC {
+    background-color: orange;
+    color: #fff;
+}
+  .high {
+    border: 1px solid red;
+    color: red;
+ }
+ .high:hover {
+ background-color: red;
+ color: #fff;
+ }
+ .high.activeC {
+    background-color: red;
+    color: #fff;
+    }
+
+ .add-to-do,
+ .create-note {
+    border: 1px solid  rgba(31, 168, 150,1);
+  color: rgba(31, 168, 150,1);
+ }
+ .add-to-do:hover,.create-note:hover {
+   background-color: rgba(31, 168, 150,1);
+   color:#fff;
+ }
+
+ .close {
+    cursor: pointer;
+    font-size: 22px;
+ }
+
+ /* modal details of tasks */
+
+ .details {
+    background-color: #eee;
+    color: #8c435a;
+    width:600px;
+    height: 300px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    border-radius: 0.2rem;
+    z-index: 3;
+    opacity:0;
+    visibility: hidden;
+    transform: scale(0);
+    transition: all 0.4s ease-in-out;
+    text-align: left;
+    border-radius: 12px;
+    padding: 0px 20px;
+   border: 2px  dashed #39d546;
+ }
+ .details h3 {
+    font-size: 30px;
+    margin-bottom: 0px;
+ }
+
+ .details p {
+    font-size:19px;
+    font-weight: bold;
+ }
+ .details p strong {
+    margin-left: 10px;
+ }
+ .details div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .close-details{
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+ }
+ /* modal */
+
+ .task-category.active {
+    color: #8c435a;
+    transform: scale(1.3); 
+}
+.mini-content-nav .section.show {
+    display: none;
+}
+.create-note {
+    margin-top: 80px;
+}
+/* note container */
+
+.notes-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+}
+.notes-container .note {
+    background-color: #eee;
+    padding: 7px 14px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in;
+}
+.notes-container .note:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.notes-container .note .info {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.mini-content-nav .section-modal.show {
+display: none;
+}
+
+.task-category-modal.active {
+    color: #8c435a;
+    transform: scale(1.3); 
+}
+/* edit buton */
+.update-to-do{
+outline: none;
+border: 1px solid black;
+transition: all 0.3s ease-in-out;
+}
+.update-to-do:hover{
+   color: white;
+   background-color: black;
+}
+    

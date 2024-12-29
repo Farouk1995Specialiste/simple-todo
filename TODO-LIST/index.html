@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <title>TODO APP</title>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">
+            <img src="./img/logo.png" alt="Logo">
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="aside">
+           <ul class="principale__nav" id="big-nav">
+            <li class="list__item">
+             <span class="task-category active" data-show="home">Home</span>
+             <span class="count-task-home"></span>
+            </li>
+            <li class="list__item">
+                <span class="task-category"  data-show="today">Today</span>
+                <span class="count-task-today"></span>
+            </li>
+            <li class="list__item">
+                <span class="task-category" data-show="week">Week</span>
+                <span class="count-task-week"></span>
+            </li>
+            <li class="list__item">
+                <span class="task-category" data-show="notes">Notes</span>
+                <span class="count-task-week"></span>
+            </li>
+           </ul>
+           <div class="show-modal-btn" id="show-modal-btn">
+            <i class="fas fa-plus"></i>
+           </div>
+        </aside>
+        
+        <div class="content" id="content">
+            <div class="section home" id="home">
+            <div class="task-list"></div>
+            </div>
+            <div class="section today" id="today">
+                <div class="task-list"></div>
+            </div>
+            <div class="section week" id="week">
+                <div class="task-list"></div>
+            </div>
+            
+            <div class="section notes" id="notes">
+               <div class="notes-container" id="notes-container"> </div>
+            </div>
+            </div>
+           
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="header">
+            <h3>Create a new...</h3>
+            <span class="close" id="close">
+                <i class="fas fa-close"></i>
+            </span>
+        </div>
+
+        <div class="mini-content-nav">
+            <div class="aside">
+                <ul class="nav">
+                    <li> <span class="task-category-modal active" data-show="todo">To Do</span> </li>
+                    <li> <span class="task-category-modal" data-show="notes">Notes</span></li>
+                </ul>
+            </div>
+
+            <div class="todo section-modal" id="todo">
+                <div class="text__areas">
+                    <textarea id="textarea1" placeholder="Title:"></textarea>
+                    <textarea id="textarea2" placeholder="Details:"></textarea>
+                </div>
+                <div class="date__div">
+                    <span>Due Date:</span>
+                    <input type="date" id="date" class="date">
+                </div>
+                <div class="priorities">
+                    <div>
+                        <span>Priority:</span>
+                        <button class="low btn"  data-color="Low">Low</button>
+                        <button class="medium btn"  data-color="Medium" >Medium</button>
+                        <button class="high btn"  data-color="High">High</button>
+                    </div>
+                    <button class="add-to-do" id="add-to-do">Add Task</button>
+                    <button class="update-to-do" id="update-to-do">Update Task</button>
+
+                </div>
+            </div>
+            <div class="notes section-modal show" id="notes">
+                <div class="text__areas">
+                    <textarea id="textarea-title" placeholder="Title:"></textarea>
+                    <textarea id="textarea-desc" placeholder="Details:"></textarea>
+                </div>
+
+                <button class="create-note" id="create-note">Create Note</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="details" id ="details"></div>
+    <div class="overlay" id="overlay"></div>
+    <script type="module" src="controller.js"></script>
+</body>
+</html>
